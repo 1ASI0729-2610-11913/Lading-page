@@ -1,140 +1,332 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TherapyConnect</title>
-    <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TherapyConnect Landing Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #f7f5fb, #eef3fb);
+      color: #141827;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #5c2dbf;
+    }
+
+    .logo-box {
+      width: 34px;
+      height: 34px;
+      background: #5c2dbf;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #3d4252;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .signin-btn {
+      background: #5c2dbf;
+      color: white;
+      border: none;
+      padding: 14px 26px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      align-items: center;
+      gap: 40px;
+      padding: 40px 0 80px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      line-height: 1.05;
+      font-weight: 800;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #5d6475;
+      max-width: 560px;
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      padding: 16px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .primary-btn {
+      background: #f5a623;
+      color: white;
+      border: none;
+      box-shadow: 0 10px 20px rgba(245, 166, 35, 0.25);
+    }
+
+    .secondary-btn {
+      background: white;
+      color: #f5a623;
+      border: 2px solid #f5a623;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bg-circle {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      background: rgba(120, 92, 255, 0.08);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .dashboard {
+      position: relative;
+      z-index: 2;
+      width: 520px;
+      background: #ffffff;
+      border: 8px solid #111827;
+      border-radius: 22px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+      padding: 24px;
+    }
+
+    .dashboard-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 22px;
+      font-size: 13px;
+      color: #888;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .stat-box {
+      padding: 18px;
+      border-radius: 10px;
+      color: white;
+    }
+
+    .purple { background: #7b43c6; }
+    .blue { background: #2f6df6; }
+
+    .stat-box h3 {
+      font-size: 2rem;
+      margin: 10px 0;
+    }
+
+    .mini-chart {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+      height: 70px;
+      margin: 18px 0;
+    }
+
+    .bar {
+      width: 16px;
+      background: #7b43c6;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .list {
+      margin-top: 18px;
+    }
+
+    .list p {
+      font-size: 13px;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .dashboard {
+        width: 100%;
+      }
+
+      .bg-circle {
+        width: 100%;
+        height: 420px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="hero">
-    <nav class="navbar">
-        <h2 class="logo">TherapyConnect</h2>
-        <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#how">How it Works</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#pricing">Plans</a></li>
-        </ul>
-        <button class="btn-primary">Sign In Free</button>
+  <div class="container">
+    <nav>
+      <div class="logo">
+        <div class="logo-box">♥</div>
+        TherapyConnect
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#">Characteristics</a></li>
+        <li><a href="#">For Fathers</a></li>
+        <li><a href="#">Institutions</a></li>
+        <li><a href="#">Resources</a></li>
+      </ul>
+
+      <button class="signin-btn">Sig in free</button>
     </nav>
 
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1>Connect, track and support your child's development</h1>
-            <p>
-                A digital platform specialized in therapies for children with autism,
-                ADHD and Asperger’s. We connect parents with professionals for personalized follow-up.
-            </p>
-            <div class="hero-buttons">
-                <button class="btn-primary">Comenzar ahora</button>
-                <button class="btn-secondary">Agendar Demo</button>
+    <section class="hero">
+      <div>
+        <h1>
+          Connect,<br>
+          track and<br>
+          support your child's<br>
+          development
+        </h1>
+
+        <p>
+          A digital platform specializing in therapies for children
+          with autism, ADHD, and Asperger's. We connect parents
+          with professionals for personalized follow-up.
+        </p>
+
+        <div class="buttons">
+          <button class="primary-btn">● Comenzar ahora</button>
+          <button class="secondary-btn">🗓 Agendar demo</button>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="bg-circle"></div>
+
+        <div class="dashboard">
+          <div class="dashboard-top">
+            <span>● ● ●</span>
+            <span>TherapyConnect Dashboard</span>
+          </div>
+
+          <h4>Monitoring Panel</h4>
+
+          <div class="stats">
+            <div class="stat-box purple">
+              <small>Sessions</small>
+              <h3>24</h3>
+              <small>In this month</small>
             </div>
-        </div>
 
-        <div class="hero-card">
-            <h3>Monitoring Panel</h3>
-            <div class="stats">
-                <div>
-                    <span>24</span>
-                    <p>Therapy sessions</p>
-                </div>
-                <div>
-                    <span>85%</span>
-                    <p>Daily progress</p>
-                </div>
+            <div class="stat-box blue">
+              <small>Progress</small>
+              <h3>85%</h3>
+              <small>Objectives</small>
             </div>
-        </div>
-    </div>
-</header>
+          </div>
 
-<!-- WHO IS IT FOR -->
-<section class="section">
-    <h2>Who Is It For?</h2>
-    <div class="cards two">
-        <div class="card">
-            <h3>For Parents</h3>
-            <p>Stay connected with your child’s therapy progress through real-time updates and direct communication.</p>
-        </div>
+          <p>weekly development</p>
 
-        <div class="card">
-            <h3>For Therapeutic Institutions</h3>
-            <p>Manage schedules, patients and progress with a centralized and efficient workflow.</p>
-        </div>
-    </div>
-</section>
+          <div class="mini-chart">
+            <div class="bar" style="height:35px"></div>
+            <div class="bar" style="height:52px"></div>
+            <div class="bar" style="height:40px"></div>
+            <div class="bar" style="height:60px"></div>
+            <div class="bar" style="height:48px"></div>
+          </div>
 
-<!-- FEATURES -->
-<section class="section" id="features">
-    <h2>How It Works?</h2>
-    <div class="steps">
-        <div class="step">
-            <span>1</span>
-            <h3>Sign Up in Minutes</h3>
-            <p>Create your account quickly and easily.</p>
+          <div class="list">
+            <p>• Communication session completed</p>
+            <p>• Pending motor skills task</p>
+            <p>• Pending motor skills task</p>
+          </div>
         </div>
-        <div class="step">
-            <span>2</span>
-            <h3>Connect with Your Institution</h3>
-            <p>Access therapy sessions, schedules and reports.</p>
-        </div>
-        <div class="step">
-            <span>3</span>
-            <h3>Support Development</h3>
-            <p>Review progress and support your child daily.</p>
-        </div>
-    </div>
-</section>
+      </div>
+    </section>
+  </div>
 
-<!-- TESTIMONIALS -->
-<section class="section" id="testimonials">
-    <h2>What Our Families and Institutions Say</h2>
-    <div class="cards three">
-        <div class="card">
-            <h3>Giovanni P.</h3>
-            <p>“TherapyConnect transformed how we manage our son’s therapy sessions.”</p>
-        </div>
-        <div class="card">
-            <h3>Maria S.</h3>
-            <p>“As a working mother, this tool helped me stay informed and organized.”</p>
-        </div>
-        <div class="card">
-            <h3>Carlos R.</h3>
-            <p>“Excellent communication between therapists and parents.”</p>
-        </div>
-    </div>
-</section>
-
-<!-- PRICING -->
-<section class="section" id="pricing">
-    <h2>Plans for every family and institution</h2>
-    <div class="cards three">
-        <div class="card price-card">
-            <h3>Basic</h3>
-            <p>Perfect for getting started</p>
-            <button class="btn-secondary">Get Started</button>
-        </div>
-
-        <div class="card price-card featured">
-            <h3>Premium</h3>
-            <p>For growing families</p>
-            <button class="btn-primary">Start Premium</button>
-        </div>
-
-        <div class="card price-card">
-            <h3>Institutional</h3>
-            <p>For institutions and clinics</p>
-            <button class="btn-secondary">Contact Sales</button>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 TherapyConnect - All rights reserved</p>
-</footer>
-
-<script src="script.js"></script>
 </body>
 </html>
